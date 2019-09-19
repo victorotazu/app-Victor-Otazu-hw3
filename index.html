@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 10;
+            min-width: 250px;
+            text-align: center;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 35%;
+            background: #ffecd7;
+            box-sizing: border-box;
+            border-style: solid;
+            border-width: 5px 5px 5px 5px;
+            border-color: #0c59cf;
+            border-radius: 10px;
+            clear: both;
+            display: inline-block;
+            text-align: center;
+            
+        }
+
+            .container input {
+                width: 200px;
+                display: inline-block;
+            }
+
+            .container textarea {
+                width: 200px;
+            }
+
+        table {
+            width: 120%;
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 10px;
+        }
+
+
+            table td {
+                padding: 10px 10px;
+            }
+
+        .labels {
+            text-align: right;
+            vertical-align: top;
+            color: #0C59CF;
+        }
+
+        .inputs {
+            text-align: left;
+        }
+
+        .registerBtn {
+            padding: 2px;
+            width: 30%;
+            background: #0C59CF;
+            color: #FFFFFF;
+            float: left;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+
+        .okMessage {
+            color: forestgreen;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .errorMessage {
+            color: red;
+            text-align: center;
+            font-size: 16px;
+        }
+    </style>
+
+    <script>
+        var validationMessage = document.getElementById("validationMessage");
+        validationMessage.innerText = "";
+        validationMessage.className = "";
+
+        function validate() {
+            var validationMessage = document.getElementById("validationMessage");
+            validationMessage.innerText = "Validation successful";
+            validationMessage.className = "okMessage";
+            var labels = document.getElementsByTagName("label");
+            for (i = 0; i < labels.length; i++) {
+                if (labels[i].htmlFor != '') {
+                    var input = document.getElementById(labels[i].htmlFor);
+                    if (input && input.value.trim() == '') {
+                        validationMessage.innerText = labels[i].innerText + " cannot be empty";
+                        validationMessage.className = "errorMessage";
+                        break;
+                    }
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+
+    <div id="myDIV" class="container">
+        <table>
+            <tbody>
+                <tr>
+                    <td class="labels">
+                        <label for="firstName" class="labels">First Name</label>
+                    </td>
+                    <td class="inputs">
+                        <input type="text" id="firstName" placeholder="First name..." class="inputs" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labels">
+                        <label for="lastName" class="labels">Last Name</label>
+                    </td>
+                    <td class="inputs">
+                        <input type="text" id="lastName" placeholder="Last name..." class="inputs" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labels">
+                        <label for="emailAddress" class="labels">Email Address</label>
+                    </td>
+                    <td class="inputs">
+                        <input type="text" id="emailAddress" placeholder="Email address..." class="inputs" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labels">
+                        <label for="notes" class="labels">Notes</label>
+                    </td>
+                    <td class="inputs">
+                        <textarea id="notes" name="notes" rows="5" required></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labels"></td>
+                    <td class="inputs">
+                        <span onclick="validate()" class="registerBtn">Register</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <span id="validationMessage"></span>
+    </div>
+
+</body>
+
+</html>
